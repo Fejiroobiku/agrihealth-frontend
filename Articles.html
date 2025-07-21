@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Pesticide Handling Techniques | AgriHealth Africa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .hero-pattern {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNDksIDI0OSwgMjQ5LCAwLjEpIj48L3JlY3Q+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIj48L3JlY3Q+PC9zdmc+');
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .language-selector {
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector:hover {
+            transform: scale(1.05);
+        }
+        
+        .health-tip {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .africa-flag-colors {
+            background: linear-gradient(90deg, #E43C14 25%, #000000 25%, #000000 50%, #FFC72C 50%, #FFC72C 75%, #009E49 75%);
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, #f6f7f9 0%, #e5e7eb 100%);
+        }
+        
+        .floating-btn {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Article content styling */
+        .article-content {
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+        
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-content img {
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #48bb78;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #4a5568;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            background-color: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+        
+        /* Table styling */
+        .article-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+        }
+        
+        .article-table th, .article-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .article-table th {
+            background-color: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #48bb78;
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+  
+       
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header with Language Selector and Search -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full africa-flag-colors flex items-center justify-center">
+                        <i class="fas fa-leaf text-white"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold text-green-800">AgriHealth <span class="text-blue-600">Africa</span></a>
+                </div>
+                
+                <div class="relative w-full md:w-1/3">
+                    <input type="text" placeholder="Search health topics..." 
+                           class="search-bar w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500">
+                    <button class="absolute right-3 top-2 text-gray-500">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 px-3 py-2 bg-gray-100 rounded-full language-selector">
+                            <i class="fas fa-globe text-gray-600"></i>
+                            <span class="text-sm font-medium">English</span>
+                            <i class="fas fa-chevron-down text-xs text-gray-600"></i>
+                      
+                    
+                    <button class="md:hidden text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="mt-4 hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-gray-600 hover:text-green-600 transition">Home</a></li>
+                    <li><a href="Articles.html" class="text-green-600 font-medium border-b-2 border-green-600 pb-1">Articles</a></li>
+                    <li><a href="videos.html" class="text-gray-600 hover:text-green-600 transition">Videos</a></li>
+                    
+                    <li><a href="Contact&Support.html" class="text-gray-600 hover:text-green-600 transition">Contact&Support</a></li>
+                    <li><a href="About.html" class="text-gray-600 hover:text-green-600 transition">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Article Header -->
+        <section class="bg-white pt-12 pb-8">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <a href="index.html" class="text-green-600 hover:underline">Home</a>
+                        <span class="mx-2">/</span>
+                        <a href="#" class="text-green-600 hover:underline">Chemical Safety</a>
+                        <span class="mx-2">/</span>
+            
+                        <span class="mx-2">•</span>
+                        <span><i class="far fa-clock mr-1"></i> 8 min read</span>
+                    </div>
+                    
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Safe Pesticide Handling Techniques for African Farmers</h1>
+                    
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Author" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800">Dr. Amina Diallo</h4>
+                                <p class="text-sm text-gray-600">Agricultural Health Specialist</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <button class="text-gray-500 hover:text-green-600">
+                                <i class="far fa-bookmark text-xl"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-green-600">
+                                <i class="fas fa-share-alt text-xl"></i>
+                            </button>
+                            <div class="language-toggle">
+                                <button class="active">EN</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative rounded-xl overflow-hidden mb-8">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3b8881a5d15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pesticide safety" class="w-full h-auto max-h-96 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <p class="text-sm text-white opacity-80">Farm worker wearing proper PPE while spraying pesticides</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="py-8 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto article-content">
+                    <p class="text-lg font-medium text-gray-700 mb-8">Proper pesticide handling is crucial for protecting your health, your family's wellbeing, and the environment. This comprehensive guide covers essential safety techniques tailored for African farming conditions.</p>
+                    
+                    <h2>Understanding Pesticide Risks</h2>
+                    
+                    <p>Pesticides are essential for crop protection but can pose serious health risks if mishandled. In Africa, where regulation enforcement varies and protective equipment may be scarce, understanding these risks becomes even more critical.</p>
+                    
+                    <div class="warning-box my-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-orange-500 mt-1 mr-3"></i>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">Did You Know?</h3>
+                                <p class="text-gray-700">According to WHO, pesticide poisoning causes an estimated 200,000 deaths annually in developing countries, with agricultural workers at highest risk.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Common Health Effects</h3>
+                    
+                    <ul>
+                        <li><strong>Immediate effects:</strong> Skin irritation, eye damage, dizziness, nausea, and in severe cases, death</li>
+                        <li><strong>Long-term exposure:</strong> Increased risk of cancer, neurological disorders, and reproductive problems</li>
+                        <li><strong>Environmental impact:</strong> Contamination of water sources and harm to beneficial insects</li>
+                    </ul>
+                    
+                    <h2>Essential Protective Equipment</h2>
+                    
+                    <p>While ideal PPE may not always be available, these are the most critical items to prioritize:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-tshirt text-green-600"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Basic Protection</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Long-sleeved shirts and pants</li>
+                                <li>Rubber boots or closed shoes</li>
+                                <li>Wide-brimmed hat</li>
+                                <li>Improvised face mask (damp cloth)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-shield-alt text-blue-600"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Enhanced Protection</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Chemical-resistant gloves</li>
+                                <li>Goggles or face shield</li>
+                                <li>Respirator mask</li>
+                                <li>Waterproof apron</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h2>Safe Mixing Practices</h2>
+                    
+                    <p>Most pesticide poisonings occur during mixing. Follow these steps carefully:</p>
+                    
+                    <ol>
+                        <li><strong>Choose the right location:</strong> Mix outdoors in well-ventilated areas, away from water sources and homes</li>
+                        <li><strong>Use proper tools:</strong> Dedicate specific measuring cups and mixing containers for pesticides only</li>
+                        <li><strong>Measure carefully:</strong> Never estimate quantities - use the exact recommended amount</li>
+                        <li><strong>Add water first:</strong> Fill sprayer with water before adding pesticide concentrate</li>
+                        <li><strong>Mix gently:</strong> Avoid splashing or creating aerosols</li>
+                    </ol>
+                    
+                    <img src="https://images.unsplash.com/photo-1581093458171-2e4769e8e4b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Mixing pesticides safely" class="rounded-lg my-8">
+                    
+                    <h2>Application Safety</h2>
+                    
+                    <p>When applying pesticides, these practices can significantly reduce exposure:</p>
+                    
+                    <table class="article-table">
+                        <thead>
+                            <tr>
+                                <th>Practice</th>
+                                <th>Reason</th>
+                                <th>Alternative When Ideal Not Possible</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Apply during cooler hours</td>
+                                <td>Reduces evaporation and inhalation risk</td>
+                                <td>Early morning or late afternoon instead of midday</td>
+                            </tr>
+                            <tr>
+                                <td>Maintain safe distance from homes</td>
+                                <td>Prevents family exposure</td>
+                                <td>At least 50 meters from dwellings</td>
+                            </tr>
+                            <tr>
+                                <td>Don't spray in windy conditions</td>
+                                <td>Prevents drift contamination</td>
+                                <td>Wait for calmer weather</td>
+                            </tr>
+                            <tr>
+                                <td>Use proper nozzle settings</td>
+                                <td>Ensures even coverage without fine mist</td>
+                                <td>Adjust to coarsest spray possible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h2>Storage and Disposal</h2>
+                    
+                    <p>Improper storage and disposal continue to cause poisonings long after application. Follow these guidelines:</p>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-6 my-6 rounded-r">
+                        <h3 class="font-bold text-gray-800 mb-3">Safe Storage Tips</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Store in original containers with intact labels</li>
+                            <li>Keep in locked cabinet or elevated shelf away from children</li>
+                            <li>Separate from food, animal feed, and water sources</li>
+                            <li>Never reuse empty pesticide containers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 border-l-4 border-red-500 p-6 my-6 rounded-r">
+                        <h3 class="font-bold text-gray-800 mb-3">Proper Disposal Methods</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Triple rinse containers before disposal</li>
+                            <li>Never burn pesticide containers</li>
+                            <li>Check with local authorities for disposal programs</li>
+                            <li>Never pour pesticides down drains or into water sources</li>
+                        </ul>
+                    </div>
+                    
+                    <h2>Emergency Response</h2>
+                    
+                    <p>Know what to do in case of accidental exposure:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-skin text-blue-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Skin Contact</h3>
+                            <p class="text-sm text-gray-600">Remove contaminated clothing immediately and wash skin with soap and water for 15-20 minutes</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <div class="bg-red-100 w-10 h-10 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-eye text-red-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Eye Contact</h3>
+                            <p class="text-sm text-gray-600">Rinse eyes with clean water for at least 15 minutes, holding eyelids open</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-lungs text-purple-600"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2">Inhalation</h3>
+                            <p class="text-sm text-gray-600">Move to fresh air immediately and seek medical attention if breathing is difficult</p>
+                        </div>
+                    </div>
+                    
+                    <blockquote>
+                        "Always keep the pesticide label and safety data sheet accessible. These contain specific first aid instructions for that product."
+                    </blockquote>
+                    
+                    <h2>Alternative Approaches</h2>
+                    
+                    <p>Consider these lower-risk pest management strategies where appropriate:</p>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6 my-6">
+                        <h3 class="font-bold text-gray-800 mb-3">Integrated Pest Management (IPM)</h3>
+                        <p>IPM combines biological, cultural, physical and chemical tools in a way that minimizes economic, health, and environmental risks:</p>
+                        <ul class="list-disc pl-5 mt-3 space-y-2">
+                            <li><strong>Crop rotation:</strong> Breaks pest life cycles naturally</li>
+                            <li><strong>Beneficial insects:</strong> Ladybugs, lacewings and other predators control pests</li>
+                            <li><strong>Trap crops:</strong> Plant sacrificial crops to attract pests away from main crops</li>
+                            <li><strong>Biopesticides:</strong> Neem, pyrethrum and other plant-based alternatives</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="border-t border-b border-gray-200 py-6 my-8">
+                        <h3 class="font-bold text-gray-800 mb-4">Key Takeaways</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-green-600 text-sm"></i>
+                                </div>
+                                <p class="text-gray-700">Always wear the most protective clothing available when handling pesticides</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-green-600 text-sm"></i>
+                                </div>
+                                <p class="text-gray-700">Mix and apply pesticides carefully to minimize exposure</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-green-600 text-sm"></i>
+                                </div>
+                                <p class="text-gray-700">Store pesticides securely and dispose of containers properly</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-3 mt-1">
+                                    <i class="fas fa-check text-green-600 text-sm"></i>
+                                </div>
+                                <p class="text-gray-700">Know emergency procedures in case of accidental exposure</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-6 mt-8">
+                        <h3 class="font-bold text-gray-800 mb-3">About the Author</h3>
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Dr. Amina Diallo" class="w-16 h-16 rounded-full object-cover mr-4">
+                            <div>
+                                <p class="text-gray-700 mb-2"><strong>Dr. Amina Diallo</strong> is an agricultural health specialist with 15 years of experience working with smallholder farmers across West Africa. She holds a PhD in Environmental Health Sciences and has published numerous papers on pesticide safety in tropical agriculture.</p>
+                                <p class="text-sm text-gray-600">Last reviewed: June 10, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ 
+
+        <!-- Newsletter Subscription -->
+        <section class="py-16 bg-green-700 text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-2xl font-bold mb-4">Get More Health Tips</h2>
+                    <p class="mb-8">Subscribe to our monthly newsletter for practical health advice tailored to African farmers</p>
+                    
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800">
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-medium px-6 py-3 rounded-lg transition duration-300">
+                            Subscribe
+                        </button>
+                    </form>
+                    
+                    <p class="text-sm text-green-200 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full africa-flag-colors flex items-center justify-center">
+                            <i class="fas fa-leaf text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">AgriHealth Africa</h3>
+                    </div>
+                    <p class="text-gray-400">Empowering African farmers with essential health knowledge for safer, more productive agricultural work.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Articles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Videos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Health Tips</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Services</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">First Aid Guides</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pesticide Safety</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Nutrition Plans</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mental Health</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Farmer Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-600 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-600 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Email: info@agrihealthafrica.org</p>
+                    <p class="text-gray-400">Phone: +254 700 123 456</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 AgriHealth Africa. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Language toggle functionality
+        const languageButtons = document.querySelectorAll('.language-toggle button');
+        
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                languageButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // In a real implementation, this would load content in the selected language
+            });
+        });
+        
+        // Article sharing functionality
+        const shareButtons = document.querySelectorAll('[data-share]');
+        
+        shareButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // This would open the appropriate share dialog in a real implementation
+                alert('Share functionality would open here');
+            });
+        });
+    </script>
+</body>
+</html>
