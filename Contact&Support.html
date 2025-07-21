@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Support | AgriHealth Africa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+        body { font-family: 'Ubuntu', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+    <!-- Header (same as other pages) -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold text-green-600">
+                AgriHealth<span class="text-blue-600">Africa</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-green-600 transition">Home</a>
+                <a href="Articles.html" class="text-green-600 font-medium border-b-2 border-green-600 pb-1">Articles</a>
+                <a href="videos.html" class="text-gray-600 hover:text-green-600 transition">Videos</a>
+                <a href="Contact&Support.html" class="text-gray-600 hover:text-green-600 transition">Contact & Support</a>
+                <a href="About.html" class="text-gray-600 hover:text-green-600 transition">About</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-xl text-gray-600"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <nav class="flex flex-col space-y-2 px-4 py-4">
+                <a href="index.html" class="text-gray-600 hover:text-green-600 py-2">Home</a>
+                <a href="Articles.html" class="text-green-600 font-medium py-2">Articles</a>
+                <a href="videos.html" class="text-gray-600 hover:text-green-600 py-2">Videos</a>
+                <a href="Contact&Support.html" class="text-gray-600 hover:text-green-600 py-2">Contact & Support</a>
+                <a href="About.html" class="text-gray-600 hover:text-green-600 py-2">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Contact Hero Section -->
+        <section class="py-16 bg-gradient-to-r from-green-500 to-blue-600 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">We're Here to Help</h1>
+                <p class="text-xl max-w-2xl mx-auto">Get in touch with our support team for any questions or assistance you need.</p>
+            </div>
+        </section>
+
+        <!-- Contact Options -->
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Email -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Email Support</h3>
+                        <p class="text-gray-600 mb-4">For general inquiries</p>
+                        <a href="mailto:support@agrihealth.org" class="text-green-600 font-medium">support@agrihealth.org</a>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Phone Support</h3>
+                        <p class="text-gray-600 mb-4">Mon-Fri, 8AM-5PM</p>
+                        <a href="tel:+250788123456" class="text-blue-600 font-medium">+250 788 123 456</a>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-lg transition">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-question-circle text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">FAQs</h3>
+                        <p class="text-gray-600 mb-4">Find quick answers</p>
+                        <button id="showFaqBtn" class="text-purple-600 font-medium">View FAQs</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-8">
+                        <h2 class="text-2xl font-bold mb-6">Send Us a Message</h2>
+                        <form id="contactForm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block mb-1 font-medium">Name</label>
+                                    <input type="text" id="name" class="w-full p-3 border rounded-lg" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block mb-1 font-medium">Email</label>
+                                    <input type="email" id="email" class="w-full p-3 border rounded-lg" required>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label for="subject" class="block mb-1 font-medium">Subject</label>
+                                <select id="subject" class="w-full p-3 border rounded-lg">
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Technical Support">Technical Support</option>
+                                    <option value="Health Questions">Health Questions</option>
+                                    <option value="Partnership">Partnership</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block mb-1 font-medium">Message</label>
+                                <textarea id="message" rows="5" class="w-full p-3 border rounded-lg" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section (hidden by default) -->
+        <section id="faqSection" class="hidden py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl font-bold mb-10 text-center">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <!-- FAQ items will be dynamically loaded via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (same as other pages) -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <!-- Footer content same as index.html -->
+        </div>
+    </footer>
+
+    <!-- Contact Page Specific JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Toggle FAQ section
+            const faqBtn = document.getElementById('showFaqBtn');
+            const faqSection = document.getElementById('faqSection');
+            
+            faqBtn.addEventListener('click', function() {
+                faqSection.classList.toggle('hidden');
+                loadFAQs(); // Load FAQs when section is shown
+            });
+
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Form data collection
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+
+                // Here you would typically send to a server
+                console.log('Form submitted:', formData);
+                
+                // Show success message
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+
+            // Load FAQ data
+            function loadFAQs() {
+                const faqContainer = document.querySelector('#faqSection .space-y-4');
+                if (faqContainer.innerHTML.trim() !== '') return; // Already loaded
+                
+                const faqs = [
+                    {
+                        question: "How can I reset my password?",
+                        answer: "Click on 'Forgot Password' on the login page and follow the instructions sent to your email."
+                    },
+                    {
+                        question: "What are your support hours?",
+                        answer: "Our phone support is available Monday to Friday from 8AM to 5PM. Email support is available 24/7."
+                    },
+                    {
+                        question: "How do I report a technical issue?",
+                        answer: "Please contact our technical support team at tech@agrihealth.org with details about the issue."
+                    }
+                ];
+
+                faqs.forEach(faq => {
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'bg-gray-50 p-6 rounded-lg';
+                    faqItem.innerHTML = `
+                        <h3 class="font-bold text-lg mb-2">${faq.question}</h3>
+                        <p class="text-gray-600">${faq.answer}</p>
+                    `;
+                    faqContainer.appendChild(faqItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

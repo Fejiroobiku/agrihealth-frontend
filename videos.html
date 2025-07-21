@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Health Videos | AgriHealth Africa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .title-font {
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .hero-pattern {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNDksIDI0OSwgMjQ5LCAwLjEpIj48L3JlY3Q+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIj48L3JlY3Q+PC9zdmc+');
+        }
+        
+        .video-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background-color: #e5e7eb;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .play-button {
+            background-color: rgba(22, 163, 74, 0.9);
+        }
+        
+        .play-button i {
+            color: #16a34a;
+            font-size: 1.5rem;
+            margin-left: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .play-button i {
+            color: white;
+        }
+        
+        .duration-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        .category-chip {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .category-chip:hover, .category-chip.active {
+            background-color: #16a34a;
+            color: white;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #16a34a;
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #16a34a;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #15803d;
+        }
+        
+        /* Animation for featured video */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Floating action button */
+        .floating-action {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center">
+                        <i class="fas fa-leaf text-white"></i>
+                    </div>
+                    <a href="#" class="text-xl font-bold text-gray-800 title-font">AgriHealth<span class="text-green-600">Africa</span></a>
+                </div>
+                
+              <!--Navigation -->
+
+          <nav class="mt-4 hidden md:block">
+    <ul class="flex space-x-6">
+        <li><a href="index.html" class="text-green-600 font-medium border-b-2 border-green-600 pb-1">Home</a></li>
+        <li><a href="Articles.html" class="text-gray-600 hover:text-green-600 transition">Articles</a></li>
+        <li><a href="videos.html" class="text-gray-600 hover:text-green-600 transition">Videos</a></li>
+
+        <li><a href="Contact&Support.html" class="text-gray-600 hover:text-green-600 transition">Contact & Support</a></li>
+        <li><a href="About.html" class="text-gray-600 hover:text-green-600 transition">About</a></li>
+    </ul>
+</nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block relative">
+                        <input type="text" placeholder="Search videos..." class="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent w-64">
+                        <button class="absolute right-3 top-2 text-gray-500 hover:text-green-600 transition">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="md:hidden mt-3">
+                <div class="relative mb-3">
+                    <input type="text" placeholder="Search videos..." class="px-4 py-2 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent">
+                    <button class="absolute right-3 top-2 text-gray-500 hover:text-green-600 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <nav>
+                    <ul class="flex flex-col space-y-2">
+                        <li><a href="#" class="block px-3 py-2 text-gray-600 hover:text-green-600 transition">Home</a></li>
+                        <li><a href="#" class="block px-3 py-2 text-gray-600 hover:text-green-600 transition">Articles</a></li>
+                        <li><a href="#" class="block px-3 py-2 text-green-600 font-semibold">Videos</a></li>
+                        <li><a href="#" class="block px-3 py-2 text-gray-600 hover:text-green-600 transition">Podcasts</a></li>
+                        <li><a href="#" class="block px-3 py-2 text-gray-600 hover:text-green-600 transition">About</a></li>
+                        <li><a href="#" class="block px-3 py-2 text-gray-600 hover:text-green-600 transition">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="hero-pattern bg-green-700 text-white py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 title-font">Agricultural Health Video Library</h1>
+                    <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Discover essential health and safety videos for African farmers and agricultural workers</p>
+                    
+                    <div class="relative max-w-xl mx-auto">
+                        <input type="text" placeholder="Search for pesticide safety, first aid, equipment use..." class="w-full px-6 py-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-300 focus:border-transparent">
+                        <button class="absolute right-3 top-3 bg-green-600 text-white p-2 rounded-full hover:bg-green-800 transition flex items-center justify-center w-10 h-10">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-sm bg-white/20 px-3 py-1 rounded-full">Trending: </span>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition">pesticide PPE</a>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition">first aid</a>
+                        <a href="#" class="text-sm bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition">equipment safety</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Categories -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-0 title-font">Available Videos</h2>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="relative">
+                                <button class="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                                    <span>Sort By</span>
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </button>
+                                <div class="absolute right-0 mt-1 w-48 bg-white rounded-lg shadow-lg py-1 hidden z-10">
+                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Most Recent</a>
+                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Most Viewed</a>
+                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Duration</a>
+                                </div>
+                            </div>
+                            
+                            <button class="p-2 rounded-lg hover:bg-gray-100 transition">
+                                <i class="fas fa-th-large text-gray-600"></i>
+                            </button>
+                            <button class="p-2 rounded-lg hover:bg-gray-100 transition">
+                                <i class="fas fa-list text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Category Chips -->
+                    <div class="mb-8 overflow-x-auto pb-2">
+                        <div class="flex space-x-3">
+                            <div class="category-chip active bg-green-600 text-white px-4 py-2 rounded-full whitespace-nowrap">All Videos</div>
+                            <div class="category-chip bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full whitespace-nowrap">Pesticide Safety</div>
+                            <div class="category-chip bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full whitespace-nowrap">First Aid</div>
+                            <div class="category-chip bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full whitespace-nowrap">Equipment Use</div>
+                            <div class="category-chip bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full whitespace-nowrap">Nutrition</div>
+                            <div class="category-chip bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full whitespace-nowrap">Mental Health</div>
+                            <div class="category-chip bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full whitespace-nowrap">Water Safety</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Video Card 1 -->
+                        <div class="video-card bg-white rounded-xl overflow-hidden">
+                            <a href="https://www.youtube.com/watch?v=sR_EXgpaXn0" class="block">
+                                <div class="video-thumbnail">
+                                    <img src="https://media.istockphoto.com/id/152966766/photo/chemical-safety.jpg?s=1024x1024&w=is&k=20&c=JFCX9coDBuAzaibdDrYR8i42yrzRfnejC7nlb8ASh3M=" alt="Pesticide safety">
+                                    <div class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <span class="duration-badge">3:23</span>
+                                </div>
+                                <div class="p-5">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-800 rounded-full">Pesticide Safety</span>
+                                        <button class="text-gray-400 hover:text-green-600 transition">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Proper Use of Personal Protective Equipment in Farming</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Learn about the right PPE for different agricultural tasks and how to wear it properly.</p>
+                                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                                        <div class="flex items-center mr-4">
+                                            <i class="far fa-eye mr-2"></i> 4.8K views
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="far fa-calendar-alt mr-2"></i> 3 years ago
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Video Card 2 -->
+                        <div class="video-card bg-white rounded-xl overflow-hidden">
+                            <a href="
+https://www.youtube.com/watch?v=Y26_RzQaOvg
+" class="block">
+                                <div class="video-thumbnail">
+                                    <img src="https://media.istockphoto.com/id/888977290/photo/man-lying-on-the-ground-after-a-work-accident.jpg?s=1024x1024&w=is&k=20&c=Qr1f4ETXxAXX3ejTNhV1lNB7YzFitgEGNrsdPgjIg3s=" alt="First aid">
+                                    <div class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <span class="duration-badge">2:29</span>
+                                </div>
+                                <div class="p-5">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <span class="text-xs font-semibold px-2 py-1 bg-red-100 text-red-800 rounded-full">First Aid</span>
+                                        <button class="text-gray-400 hover:text-green-600 transition">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Emergency First Aid for Pesticide Exposure</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Critical first aid steps to take when you or a coworker are exposed to harmful chemicals.</p>
+                                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                                        <div class="flex items-center mr-4">
+                                            <i class="far fa-eye mr-2"></i> 2.29K views
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="far fa-calendar-alt mr-2"></i> 5 years ago
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Video Card 3 -->
+                        <div class="video-card bg-white rounded-xl overflow-hidden">
+                            <a href="https://www.youtube.com/watch?v=spP7ZrIP77Y" class="block">
+                                <div class="video-thumbnail">
+                                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Equipment safety">
+                                    <div class="play-button">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <span class="duration-badge">4:02</span>
+                                </div>
+                                <div class="p-5">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <span class="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Equipment Safety</span>
+                                        <button class="text-gray-400 hover:text-green-600 transition">
+                                            <i class="far fa-bookmark"></i>
+                                        </button>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-800 mb-2">Safe Operation of Tractors and Heavy Machinery</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Essential safety checks and precautions when operating farm equipment.</p>
+                                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                                        <div class="flex items-center mr-4">
+                                            <i class="far fa-eye mr-2"></i> 19K views
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="far fa-calendar-alt mr-2"></i> 8 years ago
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Loading More -->
+                    <div class="mt-12 text-center">
+                        <button class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition flex items-center justify-center mx-auto">
+                            Load More Videos <i class="fas fa-arrow-down ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Video -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex flex-col lg:flex-row gap-10">
+                        <div class="lg:w-1/2">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg pulse-animation">
+                                <a href="https://www.youtube.com/watch?v=8Bu_6IdjOCc" target="_blank">
+    <div class="video-thumbnail">
+        <img src="https://media.istockphoto.com/id/990083620/photo/forklift-handling-sugar-bags-for-stuffing-into-container-for-export.jpg?s=1024x1024&w=is&k=20&c=Oor2v2CaJAzie3HgE-clQMLFpJn3V_efWs4HgyylCIY=" alt="Featured video">
+        <div class="play-button">
+            <i class="fas fa-play"></i>
+        </div>
+    </div>
+</a>
+
+                                <div class="p-6">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <span class="text-xs font-semibold px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full"></span>
+                                        <span class="text-xs font-semibold px-2 py-1 bg-gray-100 text-gray-800 rounded-full flex items-center">
+                                            2:23 min <i class="fas fa-star text-yellow-500 ml-1"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/2">
+                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 title-font">Featured Video: Safe Storage of Agricultural Chemicals</h2>
+                            <p class="text-lg text-gray-600 mb-6">This comprehensive guide shows proper storage techniques for pesticides and fertilizers to prevent accidental poisonings and environmental contamination in rural African settings.</p>
+                            
+                            <div class="mb-6">
+                                <h3 class="font-semibold text-gray-800 mb-2">Video Highlights:</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                        <span>Proper ventilation requirements</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                        <span>Child-proof locking mechanisms</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                        <span>Emergency spill response procedures</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                        <span>Cost-effective solutions for small farms</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition flex items-center">
+                                    <i class="fas fa-play mr-2"></i> Watch Now
+                                </a>
+                                <button class="px-6 py-3 border border-gray-300 hover:bg-gray-50 rounded-lg font-medium transition flex items-center">
+                                    <i class="far fa-bookmark mr-2"></i> Save for Later
+                                </button>
+                                <button class="px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                                <button class="px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-16 bg-green-700 text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 title-font">Get New Videos Delivered Weekly</h2>
+                    <p class="mb-8 text-lg max-w-xl mx-auto">Subscribe to our newsletter to receive notifications when we publish new agricultural health and safety videos.</p>
+                    
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800">
+                        <button type="submit" class="bg-white hover:bg-gray-100 text-green-800 font-medium px-6 py-3 rounded-lg transition">
+                            Subscribe
+                        </button>
+                    </form>
+                    
+                    <p class="text-sm text-green-100 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-green-800 flex items-center justify-center">
+                            <i class="fas fa-leaf text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white title-font">AgriHealth<span class="text-green-500">Africa</span></span>
+                    </div>
+                    <p class="mb-4">Empowering African farmers with essential health knowledge for safer, more productive agricultural work.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-green-600 transition flex items-center justify-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-green-600 transition flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-green-600 transition flex items-center justify-center">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-green-600 transition flex items-center justify-center">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4 title-font">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="videos.html" class="hover:text-white transition">Videos</a></li>
+                        <li><a href="Articles.html" class="hover:text-white transition">Articles</a></li>
+                        <li><a href="Contact&Support.html" class="hover:text-white transition">Contact&Support</a></li>
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4 title-font">Video Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition">Pesticide Safety</a></li>
+                        <li><a href="#" class="hover:text-white transition">First Aid</a></li>
+                        <li><a href="#" class="hover:text-white transition">Equipment Use</a></li>
+                        <li><a href="#" class="hover:text-white transition">Nutrition</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mental Health</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4 title-font">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-green-500"></i>
+                            <span>info@agrihealthafrica.org</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-green-500"></i>
+                            <span>+254 700 123 456</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-green-500"></i>
+                            <span>Lagos, Nigeria</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6">
+                        <h4 class="text-md font-semibold text-white mb-2">Available in:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded">English</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded">Swahili</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded">Français</span>
+                            <span class="text-xs bg-gray-800 px-2 py-1 rounded">Yoruba</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm mb-4 md:mb-0">© 2025 AgriHealth Africa. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-sm hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="text-sm hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="floating-action">
+        <i class="fas fa-plus text-xl"></i>
+    </div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Category filtering
+        const categoryChips = document.querySelectorAll('.category-chip');
+        
+        categoryChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                categoryChips.forEach(c => c.classList.remove('active', 'bg-green-600', 'text-white'));
+                chip.classList.add('active', 'bg-green-600', 'text-white');
+                // In a real implementation, this would filter the videos
+            });
+        });
+        
+        // Video card interaction
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        videoCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('button')) {
+                    // In a real implementation, this would open the video player
+                    console.log('Video would play here');
+                }
+            });
+        });
+        
+        // Floating action button
+        const floatingAction = document.querySelector('.floating-action');
+        
+        floatingAction.addEventListener('click', () => {
+            // In a real implementation, this would open a modal or perform an action
+            console.log('Floating action clicked');
+        });
+    </script>
+</body>
+</html>
