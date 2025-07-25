@@ -360,21 +360,14 @@
             </div>
         </div>
 
-        <div class="text-center mt-10">
-            <button class="border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-3 rounded-lg font-medium transition duration-300">
-                View All Videos <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-        </div>
-    </div>
-</section>
+   <div class="text-center mt-10">
+  <a href="videos.html" class="border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-3 rounded-lg font-medium transition duration-300 inline-block">
+    View All Videos <i class="fas fa-arrow-right ml-2"></i>
+  </a>
+</div>
+ 
                 
-                <div class="text-center mt-10">
-                    <button class="border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-3 rounded-lg font-medium transition duration-300">
-                        View All Videos <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Local Services -->
         <section class="py-16 bg-green-50">
@@ -428,43 +421,83 @@
         </section>
 
         <!-- Inquiry Form -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl shadow-md p-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Have Questions? Ask Our Health Experts</h2>
-                    <form>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                            </div>
-                        </div>
-                        <div class="mb-6">
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                            <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                                <option>Select a topic</option>
-                                <option>Chemical Safety</option>
-                                <option>Nutrition</option>
-                                <option>First Aid</option>
-                                <option>Mental Health</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Question</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
-                        </div>
-                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium w-full transition duration-300">
-                            Submit Question
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl shadow-md p-8">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Have Questions? Ask Our Health Experts</h2>
+      
+      <form id="contact-form">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+          <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <option>Select a topic</option>
+            <option>Chemical Safety</option>
+            <option>Nutrition</option>
+            <option>First Aid</option>
+            <option>Mental Health</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Question</label>
+          <textarea id="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+        </div>
+
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium w-full transition duration-300">
+          Submit Question
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Script to send form data to your backend -->
+<script>
+  const API_BASE_URL = 'https://agrihealth-backend.onrender.com/api';
+
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('Your question has been submitted successfully!');
+        document.getElementById('contact-form').reset();
+      } else {
+        alert('There was an error submitting your question.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Network error - please try again later.');
+    }
+  });
+</script>
 
         <!-- Testimonials -->
         <section class="py-16 bg-green-100">
