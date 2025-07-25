@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - AgriHealth Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .sidebar {
+      transition: all 0.3s ease;
+    }
+    .sidebar-collapsed {
+      width: 80px;
+    }
+    .sidebar-collapsed .nav-text {
+      display: none;
+    }
+    .content {
+      transition: margin-left 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- ✅ Login Protection -->
+  <script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar bg-green-800 text-white w-64 flex-shrink-0">
+      <div class="p-4 border-b border-green-700">
+        <h1 class="text-xl font-bold flex items-center">
+          <i class="fas fa-leaf mr-3"></i>
+          <span class="nav-text">AgriHealth Admin</span>
+        </h1>
+      </div>
+      <nav class="mt-6">
+        <div class="px-4 py-3 hover:bg-green-700 flex items-center cursor-pointer">
+          <i class="fas fa-tachometer-alt mr-3"></i>
+          <span class="nav-text">Dashboard</span>
+        </div>
+        <div class="px-4 py-3 hover:bg-green-700 flex items-center cursor-pointer">
+          <i class="fas fa-newspaper mr-3"></i>
+          <span class="nav-text">Articles</span>
+        </div>
+        <div class="px-4 py-3 hover:bg-green-700 flex items-center cursor-pointer">
+          <i class="fas fa-video mr-3"></i>
+          <span class="nav-text">Videos</span>
+        </div>
+        <div class="px-4 py-3 hover:bg-green-700 flex items-center cursor-pointer">
+          <i class="fas fa-users mr-3"></i>
+          <span class="nav-text">Users</span>
+        </div>
+        <div class="px-4 py-3 hover:bg-green-700 flex items-center cursor-pointer">
+          <i class="fas fa-chart-bar mr-3"></i>
+          <span class="nav-text">Analytics</span>
+        </div>
+        <div class="px-4 py-3 hover:bg-green-700 flex items-center cursor-pointer">
+          <i class="fas fa-cog mr-3"></i>
+          <span class="nav-text">Settings</span>
+        </div>
+        <!-- ✅ Logout Button -->
+        <div onclick="logout()" class="px-4 py-3 hover:bg-red-700 flex items-center cursor-pointer">
+          <i class="fas fa-sign-out-alt mr-3"></i>
+          <span class="nav-text">Logout</span>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content flex-1 overflow-auto">
+      <!-- Top Navigation -->
+      <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+        <button class="text-gray-600">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border rounded-lg">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+          </div>
+          <div class="flex items-center space-x-2">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" class="w-8 h-8 rounded-full">
+            <span class="font-medium">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <main class="p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Admin Dashboard</h2>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="stat-card bg-white p-6 rounded-lg shadow transition duration-300">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Total Articles</p>
+                <h3 class="text-3xl font-bold">142</h3>
+              </div>
+              <div class="bg-green-100 p-3 rounded-full">
+                <i class="fas fa-newspaper text-green-600 text-xl"></i>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card bg-white p-6 rounded-lg shadow transition duration-300">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Total Videos</p>
+                <h3 class="text-3xl font-bold">36</h3>
+              </div>
+              <div class="bg-blue-100 p-3 rounded-full">
+                <i class="fas fa-video text-blue-600 text-xl"></i>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card bg-white p-6 rounded-lg shadow transition duration-300">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Active Users</p>
+                <h3 class="text-3xl font-bold">1,248</h3>
+              </div>
+              <div class="bg-purple-100 p-3 rounded-full">
+                <i class="fas fa-users text-purple-600 text-xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-gray-800">Recent Activity</h3>
+            <button class="text-green-600 hover:text-green-800">View All</button>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start border-b pb-4">
+              <div class="bg-green-100 p-2 rounded-full mr-4">
+                <i class="fas fa-plus text-green-600"></i>
+              </div>
+              <div>
+                <p class="font-medium">New article added</p>
+                <p class="text-sm text-gray-500">"Pesticide Safety Guidelines" by Admin</p>
+                <p class="text-xs text-gray-400">2 hours ago</p>
+              </div>
+            </div>
+            <div class="flex items-start border-b pb-4">
+              <div class="bg-blue-100 p-2 rounded-full mr-4">
+                <i class="fas fa-user text-blue-600"></i>
+              </div>
+              <div>
+                <p class="font-medium">New user registered</p>
+                <p class="text-sm text-gray-500">John Doe from Kenya</p>
+                <p class="text-xs text-gray-400">5 hours ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Actions</h3>
+            <div class="space-y-3">
+              <button class="w-full flex items-center justify-between p-3 bg-green-50 rounded-lg hover:bg-green-100">
+                <span>Add New Article</span>
+                <i class="fas fa-arrow-right text-green-600"></i>
+              </button>
+              <button class="w-full flex items-center justify-between p-3 bg-blue-50 rounded-lg hover:bg-blue-100">
+                <span>Upload Video</span>
+                <i class="fas fa-arrow-right text-blue-600"></i>
+              </button>
+              <button class="w-full flex items-center justify-between p-3 bg-purple-50 rounded-lg hover:bg-purple-100">
+                <span>Manage Users</span>
+                <i class="fas fa-arrow-right text-purple-600"></i>
+              </button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">System Status</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm font-medium">Storage</span>
+                  <span class="text-sm">65% used</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-green-600 h-2.5 rounded-full" style="width: 65%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-sm font-medium">Memory</span>
+                  <span class="text-sm">42% used</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-blue-600 h-2.5 rounded-full" style="width: 42%"></div>
+                </div>
+              </div>
+              <div class="pt-4">
+                <p class="text-sm text-gray-500">Last backup: Today, 02:30 AM</p>
+                <button class="mt-2 text-sm text-green-600 hover:text-green-800">Run Backup Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Sidebar toggle
+    document.querySelector('.fa-bars').addEventListener('click', function() {
+      document.querySelector('.sidebar').classList.toggle('sidebar-collapsed');
+      document.querySelector('.content').classList.toggle('ml-20');
+      document.querySelector('.content').classList.toggle('ml-64');
+    });
+
+    // ✅ Logout function
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
