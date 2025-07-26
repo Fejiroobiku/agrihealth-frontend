@@ -71,3 +71,4 @@ Authentication (e.g., JWT or session cookies) should be integrated in future ver
 Fejiro Obiku
 
 Frontend GitHub Repository
+#BOTH BACKEND AND FRONTEND WHERE SPLIT INTO DIFFERENT REPOOSITORIES BECAUSE OF DEPLOYMENT
