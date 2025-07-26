@@ -4,7 +4,7 @@ This is the frontend for **AgriHealth Africa**, a web-based admin dashboard desi
 
 ## 🌐 Live URL
 
-👉 [View Live Website](https://68835f6d6b0e736bb52702d7--spiffy-flan-369b41.netlify.app)
+👉 [View Live Website](https://agrihealth-admin.netlify.app/)
 
 ## 🧰 Technologies Used
 
